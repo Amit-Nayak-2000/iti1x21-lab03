@@ -19,14 +19,38 @@ public class Utils {
 
   	if ( in == null || what == null || with == null ) {
   	    valid = false;
-  	} else {
+  	} 
+    else {
   	    // more or less 16 lines missing
-  	}
+        for(int i = 0; i < in.length && valid == true; i++){
+          if(in[i] == null){
+            valid = false;
+          }
+        }
+        if(with.length != what.length){
+          valid = false;
+        }
+        for(int i = 0; i < with.length && valid == true; i++){
+          if(with[i] == null || what[i] == null){
+            valid = false;
+          }
+        }
+      }
+  	
 
   	if ( valid ) {
   	    out = new String[ in.length ];
   	    for ( int i=0; i<in.length; i++ ) {
-  		      //more or less 10 lines missing
+          boolean find = false;
+  		    for(int j = 0; j < with.length && find == false; j++){
+            if(in[i].equals(what[j])){
+              find = true;
+              out[i] = with[j];
+            }
+          }
+          if(find == false){
+            out[i] = in[i];
+          }
   	    }
   	}
     // Returning a reference to the newly created array that
