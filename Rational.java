@@ -6,11 +6,14 @@ public class Rational {
   // constructors
 
   public Rational(int numerator) {
-    // Your code here
+    this.numerator = numerator;
+    this.denominator = 1;
   }
 
   public Rational(int numerator, int denominator) {
-    // Your code here
+    this.numerator = numerator;
+    this.denominator = denominator;
+    reduce();
   }
 
   // getters
@@ -26,17 +29,39 @@ public class Rational {
   // instance methods
 
   public Rational plus(Rational other) {
-    // Your code here
+    int finalDenominator = denominator * other.denominator;
+    int finalNumerator = (numerator * other.denominator) + (other.numerator * denominator);
+    return new Rational(finalNumerator, finalDenominator);
   }
 
   public static Rational plus(Rational a, Rational b) {
-    // Your code here
+    return a.plus(b);
   }
 
   // Transforms this number into its reduced form
 
   private void reduce() {
-    // Your code here
+    int absoluteNumerator = numerator;
+    int absoluteDenominator = denominator;
+    if(numerator == 0){
+      denominator = 1;
+    }
+    if(numerator < 0){
+      absoluteNumerator = numerator * -1;
+    }
+    if(denominator < 0){
+      absoluteDenominator = denominator * -1;
+    }
+  
+    int commonDenominator = gcd(absoluteNumerator, absoluteDenominator);
+
+    if (numerator < 0 && denominator < 0){
+      numerator = numerator * -1;
+      denominator = denominator * -1;
+    }
+    numerator /= commonDenominator;
+    denominator /= commonDenominator;
+    
   }
 
   // Euclid's algorithm for calculating the greatest common divisor
@@ -56,19 +81,24 @@ public class Rational {
   }
 
   public int compareTo(Rational other) {
-    // Your code here
+    return (numerator * other.denominator) - (other.numerator * denominator);
   }
 
   public boolean equals(Rational other) {
-    // Your code here
+    if(numerator == other.numerator && denominator == other.denominator){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 
   public String toString() {
     String result;
     if (denominator == 1) {
-        // Your code here
+        result = String.valueOf(numerator);
     } else {
-        // Your code here
+        result = String.valueOf(numerator) + "/" + String.valueOf(denominator);
     }
     return result;
   }
