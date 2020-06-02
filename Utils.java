@@ -1,3 +1,7 @@
+  /**
+   * this class is a utility class used for word swapping in sentences
+   * @author Amit Nayak
+   */
 public class Utils {
 
   /**
@@ -15,13 +19,12 @@ public class Utils {
     String[] out = null; // The new array to be returned
     boolean valid = true; // True if the pre-conditions are satistified
 
-  	// Testing pre-conditions
-
+  	// Testing for the pre-conditions
   	if ( in == null || what == null || with == null ) {
   	    valid = false;
   	} 
     else {
-  	    // more or less 16 lines missing
+
         for(int i = 0; i < in.length && valid == true; i++){
           if(in[i] == null){
             valid = false;
